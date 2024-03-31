@@ -9,7 +9,7 @@ def set_warnigs_hook():
         print(f'Warning: {message}', file=sys.stderr)
     warnings.showwarning = on_warn
 
-def build(arg1, arg2, flag, **kwargs):
+def {{__appfn__}}(arg1, arg2, flag, **kwargs):
     print(arg1, arg2, flag, kwargs)
     pass
 
@@ -31,7 +31,7 @@ def main():
 
     set_warnigs_hook()
     try:
-        build(**params)
+        {{__appfn__}}(**params)
     except Exception as e:
         print(f'{e.__class__.__name__}:', *e.args)
         return 1

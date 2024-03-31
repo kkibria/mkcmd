@@ -1,9 +1,18 @@
 import argparse
+import re
 from pathlib import Path
 from warnings import warn
 
 from . import get_template_path, set_warnigs_hook
 from prj_gen.template import process_folder
+
+def mk_py_var_name(s):
+    pat = r'[^0-9a-zA-Z_]+'
+    pat1 = r'^[0-9]'
+    ret = re.sub(pat, "_", s)
+    if re.match(pat1, ret):
+        ret = "_n" + ret
+    return ret
 
 def build(params, path, force, no_ext, **kwargs):
     dst = Path(path)
@@ -18,7 +27,11 @@ def build(params, path, force, no_ext, **kwargs):
     obj = lambda: None
     obj.exclude = '__pycache__'.split()
     prj = Path(get_template_path()).joinpath("prj")
-    process_folder(obj, prj, dst.parent, {"__target__": dst.name, "__app__":dst.stem})
+    process_folder(obj, prj, dst.parent, {
+        "__target__": dst.name,
+        "__app__":dst.stem,
+        "__appfn__":"do_"+mk_py_var_name(dst.stem)
+        })
 
 def main():
     params = {"app": "mkcmd"}
