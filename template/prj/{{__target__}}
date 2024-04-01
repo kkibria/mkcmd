@@ -2,13 +2,6 @@ import argparse
 import sys
 from warnings import warn
 
-def set_warnigs_hook():
-    import sys
-    import warnings
-    def on_warn(message, category, filename, lineno, file=None, line=None):
-        print(f'Warning: {message}', file=sys.stderr)
-    warnings.showwarning = on_warn
-
 def {{__appfn__}}(arg1, arg2, flag, **kwargs):
     print(arg1, arg2, flag, kwargs)
     pass
@@ -39,5 +32,12 @@ def main():
     return 0
 
 if __name__ == '__main__':
+    def set_warnigs_hook():
+        import sys
+        import warnings
+        def on_warn(message, category, filename, lineno, file=None, line=None):
+            print(f'Warning: {message}', file=sys.stderr)
+        warnings.showwarning = on_warn
+
     sys.exit(main())
 
