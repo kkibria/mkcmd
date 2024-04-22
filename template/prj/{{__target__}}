@@ -31,13 +31,13 @@ def main():
     
     return 0
 
-if __name__ == '__main__':
-    def set_warnigs_hook():
-        import sys
-        import warnings
-        def on_warn(message, category, filename, lineno, file=None, line=None):
-            print(f'Warning: {message}', file=sys.stderr)
-        warnings.showwarning = on_warn
+def set_warnigs_hook():
+    import sys
+    import warnings
+    def on_warn(message, category, filename, lineno, file=None, line=None):
+        print(f'Warning: {message}', file=sys.stderr)
+    warnings.showwarning = on_warn
 
+if __name__ == '__main__':
     sys.exit(main())
 
