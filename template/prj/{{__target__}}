@@ -1,8 +1,15 @@
+import os
 import argparse
 import sys
 from warnings import warn
 
+def basedir(kwargs):
+    basedir = os.path.expanduser(f"~/.{kwargs['app']}/")
+    os.makedirs(basedir, exist_ok=True)
+    return basedir
+
 def {{__appfn__}}(arg1, arg2, flag, **kwargs):
+    # b = basedir(kwargs)
     print(arg1, arg2, flag, kwargs)
     pass
 
