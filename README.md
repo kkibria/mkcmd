@@ -9,9 +9,9 @@ This tool is built with [`chef`](https://github.com/kkibria/chef) which uses
 Recommended way is to install `mkcmd` globally and you will
 have to install in administrative mode.
 
-### Using poetry
+### Using uv
 ```
-poetry add git+https://github.com/kkibria/mkcmd.git
+uv tool -n install git+https://github.com/kkibria/mkcmd.git
 ```
 
 ### Using pip
