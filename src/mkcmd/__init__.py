@@ -6,8 +6,5 @@ def set_warnigs_hook():
     warnings.showwarning = on_warn
 
 def get_template_path():
-    try:
-        from .template import _loc
-    except ModuleNotFoundError:
-        from template import _loc
-    return _loc()
+    from importlib.resources import files
+    return files(__package__).joinpath(f"template")

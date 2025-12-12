@@ -1,21 +1,22 @@
-[tool.poetry]
+[project]
 name = "mkcmd"
 version = "0.1.0"
 description = "Creates python command file"
-authors = ["Khan Kibria <khan.kibria@gmail.com>"]
 readme = "README.md"
-packages = [
-    {include = "mkcmd", from = "src"},
-    {include = "template", from = ".", to ="mkcmd"},
+authors = [
+    { name = "Khan Kibria", email = "khan.kibria@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "prj-gen",
 ]
 
-[tool.poetry.dependencies]
-python = "^3.10"
-prj-gen = {git = "https://github.com/kkibria/prj-gen.git"}
+[project.scripts]
+mkcmd = "mkcmd.cli:main"
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.9.15,<0.10.0"]
+build-backend = "uv_build"
 
-[tool.poetry.scripts]
-mkcmd = "mkcmd.cli:main"
+[tool.uv.sources]
+prj-gen = { git = "https://github.com/kkibria/prj-gen.git" }
