@@ -13,6 +13,12 @@ def {{__appfn__}}(arg1, arg2, flag, **kwargs):
     print(arg1, arg2, flag, kwargs)
     pass
 
+def add_args(parser):
+    parser.add_argument('arg1')
+    parser.add_argument('arg2')
+    parser.add_argument('-f', '--flag', default=False,
+                    action='store_true')
+
 def main():
     params = {"app": "{{__app__}}"}
 
@@ -21,10 +27,7 @@ def main():
         description='Creates python command file',
         epilog=f'python -m {params["app"]}')
 
-    parser.add_argument('arg1')
-    parser.add_argument('arg2')
-    parser.add_argument('-f', '--flag', default=False,
-                    action='store_true')
+    add_args(parser)
 
     args = parser.parse_args()
     params = params | vars(args)
